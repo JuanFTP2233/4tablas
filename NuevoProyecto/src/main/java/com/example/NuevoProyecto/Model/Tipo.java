@@ -1,6 +1,7 @@
 package com.example.NuevoProyecto.Model;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 public class Tipo {
@@ -10,12 +11,17 @@ public class Tipo {
     private String nombre;
     private String descripcion;
 
+    @OneToMany(mappedBy = "tipo")
+    private List<Pokemon> pokemones;
+
     public Tipo() {
     }
 
-    public Tipo(String nombre, String descripcion) {
+    public Tipo(int id, String nombre, String descripcion, List<Pokemon> pokemones) {
+        this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.pokemones = pokemones;
     }
 
     public int getId() {
@@ -41,4 +47,14 @@ public class Tipo {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public List<Pokemon> getPokemones() {
+        return pokemones;
+    }
+
+    public void setPokemones(List<Pokemon> pokemones) {
+        this.pokemones = pokemones;
+    }
 }
+
+

@@ -11,13 +11,24 @@ public class Pokemon {
     private int nivel;
     private String habilidad;
 
+    @ManyToOne
+    @JoinColumn(name = "entrenador_id")
+    private Entrenador entrenador;
+
+    @ManyToOne
+    @JoinColumn(name = "tipo_id")
+    private Tipo tipo;
+
     public Pokemon() {
     }
 
-    public Pokemon(String nombre, int nivel, String habilidad) {
+    public Pokemon(int id, String nombre, int nivel, String habilidad, Entrenador entrenador, Tipo tipo) {
+        this.id = id;
         this.nombre = nombre;
         this.nivel = nivel;
         this.habilidad = habilidad;
+        this.entrenador = entrenador;
+        this.tipo = tipo;
     }
 
     public int getId() {
@@ -51,4 +62,23 @@ public class Pokemon {
     public void setHabilidad(String habilidad) {
         this.habilidad = habilidad;
     }
+
+    public Entrenador getEntrenador() {
+        return entrenador;
+    }
+
+    public void setEntrenador(Entrenador entrenador) {
+        this.entrenador = entrenador;
+    }
+
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
 }
+
+
+

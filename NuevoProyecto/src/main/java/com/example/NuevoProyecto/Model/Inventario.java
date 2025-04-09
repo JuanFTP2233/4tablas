@@ -1,6 +1,7 @@
 package com.example.NuevoProyecto.Model;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 public class Inventario {
@@ -11,13 +12,19 @@ public class Inventario {
     private int cantidad;
     private String descripcion;
 
+    @ManyToOne
+    @JoinColumn(name = "entrenador_id")
+    private Entrenador entrenador;
+
     public Inventario() {
     }
 
-    public Inventario(String objeto, int cantidad, String descripcion) {
+    public Inventario(int id, String objeto, int cantidad, String descripcion, Entrenador entrenador) {
+        this.id = id;
         this.objeto = objeto;
         this.cantidad = cantidad;
         this.descripcion = descripcion;
+        this.entrenador = entrenador;
     }
 
     public int getId() {
@@ -51,4 +58,14 @@ public class Inventario {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public Entrenador getEntrenador() {
+        return entrenador;
+    }
+
+    public void setEntrenador(Entrenador entrenador) {
+        this.entrenador = entrenador;
+    }
 }
+
+
